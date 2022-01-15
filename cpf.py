@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from random import randint
 
 class CpfGeneratorValidator():
@@ -10,6 +9,8 @@ class CpfGeneratorValidator():
             self.cpf = CpfGeneratorValidator.generate_cpf()
 
         self.cpf_formatted = CpfGeneratorValidator.get_formatted_cpf(self.cpf)
+
+        self.validate_cpf(self.cpf)
 
     @staticmethod
     def generate_cpf():
@@ -72,32 +73,40 @@ class CpfGeneratorValidator():
         cpf = cpf.replace('.','')
         cpf = cpf.replace('-','')
 
-        # cpf_copy = cpf[:-2]
+        validation_first_digit = CpfGeneratorValidator.verify_first_digit(cpf)
+        validation_second_digit = CpfGeneratorValidator.verify_second_digit(cpf)
 
-        # cpf_first_digit = cpf[-2]
-        # cpf_second_digit = cpf[-1]
+        if CpfGeneratorValidator.verify_sequence(cpf):
+            print(f'Invalid cpf.')
+            return False
 
-        # print(f'cpf: {cpf}')
-        # print(f'cpf copy: {cpf_copy}')
-        # print(f'cpf first digit: {cpf_first_digit}')
-        # print(f'cpf second digit: {cpf_second_digit}')
-
-        verirfication_first_digit = CpfGeneratorValidator.verify_first_digit(cpf)
-        verirfication_second_digit = CpfGeneratorValidator.verify_second_digit(cpf)
-
-        if verirfication_first_digit and verirfication_second_digit:
+        if validation_first_digit and validation_second_digit:
+            print(f'Valid cpf.')
             return True
         else:
+            print(f'Invalid cpf.')
             return False
 
     @staticmethod
+    def verify_sequence(cpf):
+        sequence = True
+
+        for number in cpf:
+            if number != cpf[0]:
+                sequence = False
+
+        if sequence == True:
+            return True
+        else:
+            return False
+    
+    @staticmethod
     def verify_first_digit(cpf):
+
         digit = cpf[-2]
         cpf = cpf[:-2]
 
-        sum_result = 0
-
-        correct_digit = ''
+        correct_digit = CpfGeneratorValidator.generate_cpf_first_digit(cpf)[-1]
 
         if str(correct_digit) == digit:
             return True
@@ -109,9 +118,7 @@ class CpfGeneratorValidator():
         digit = cpf[-1]
         cpf = cpf[:-1]
 
-        sum_result = 0
-
-        correct_digit = ''
+        correct_digit = CpfGeneratorValidator.generate_cpf_second_digit(cpf)[-1]
 
         if str(correct_digit) == digit:
             return True

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="linedit_cpf">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>21</y>
+      <width>281</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_generate_cpf">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>64</y>
+      <width>281</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Generate cpf</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_validate_cpf">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>107</y>
+      <width>281</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Validate cpf</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="linedit_display">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>150</y>
+      <width>281</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
