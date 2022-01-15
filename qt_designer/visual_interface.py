@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interface.ui'
+# Form implementation generated from reading ui file 'visual_interface.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -15,25 +15,43 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(300, 200)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
         self.linedit_cpf = QtWidgets.QLineEdit(self.centralwidget)
-        self.linedit_cpf.setGeometry(QtCore.QRect(9, 21, 281, 25))
+        self.linedit_cpf.setMaxLength(14)
+        self.linedit_cpf.setPlaceholderText("Cpf")
         self.linedit_cpf.setObjectName("linedit_cpf")
+        self.gridLayout.addWidget(self.linedit_cpf, 0, 0, 1, 1)
         self.btn_generate_cpf = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_generate_cpf.setGeometry(QtCore.QRect(9, 64, 281, 25))
         self.btn_generate_cpf.setObjectName("btn_generate_cpf")
+        self.gridLayout.addWidget(self.btn_generate_cpf, 1, 0, 1, 1)
         self.btn_validate_cpf = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_validate_cpf.setGeometry(QtCore.QRect(9, 107, 281, 25))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_validate_cpf.sizePolicy().hasHeightForWidth())
         self.btn_validate_cpf.setSizePolicy(sizePolicy)
         self.btn_validate_cpf.setObjectName("btn_validate_cpf")
+        self.gridLayout.addWidget(self.btn_validate_cpf, 2, 0, 1, 1)
         self.linedit_display = QtWidgets.QLineEdit(self.centralwidget)
-        self.linedit_display.setGeometry(QtCore.QRect(9, 150, 281, 41))
+        self.linedit_display.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.linedit_display.sizePolicy().hasHeightForWidth())
+        self.linedit_display.setSizePolicy(sizePolicy)
         self.linedit_display.setObjectName("linedit_display")
+        self.gridLayout.addWidget(self.linedit_display, 3, 0, 1, 1)
+        self.btn_reset = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_reset.setObjectName("btn_reset")
+        self.gridLayout.addWidget(self.btn_reset, 4, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -44,3 +62,4 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.btn_generate_cpf.setText(_translate("MainWindow", "Generate cpf"))
         self.btn_validate_cpf.setText(_translate("MainWindow", "Validate cpf"))
+        self.btn_reset.setText(_translate("MainWindow", "Reset"))

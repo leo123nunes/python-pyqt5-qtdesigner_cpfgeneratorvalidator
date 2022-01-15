@@ -1,19 +1,16 @@
 from random import randint
 
-class CpfGeneratorValidator():
+class CpfApp():
     def __init__(self, cpf = None):
 
         if cpf:
             self.cpf = cpf
         else:
-            self.cpf = CpfGeneratorValidator.generate_cpf()
+            self.generate_cpf()
 
-        self.cpf_formatted = CpfGeneratorValidator.get_formatted_cpf(self.cpf)
+        self.cpf_formatted = CpfApp.get_formatted_cpf(self.cpf)
 
-        self.validate_cpf(self.cpf)
-
-    @staticmethod
-    def generate_cpf():
+    def generate_cpf(self):
         counter = 1
 
         cpf = ''
@@ -23,10 +20,10 @@ class CpfGeneratorValidator():
 
             counter += 1
 
-        cpf = CpfGeneratorValidator.generate_cpf_first_digit(cpf)
-        cpf = CpfGeneratorValidator.generate_cpf_second_digit(cpf)
+        cpf = CpfApp.generate_cpf_first_digit(cpf)
+        cpf = CpfApp.generate_cpf_second_digit(cpf)
 
-        return cpf
+        self.cpf = CpfApp.get_formatted_cpf(cpf)
 
     @staticmethod
     def generate_cpf_first_digit(cpf):
@@ -73,18 +70,15 @@ class CpfGeneratorValidator():
         cpf = cpf.replace('.','')
         cpf = cpf.replace('-','')
 
-        validation_first_digit = CpfGeneratorValidator.verify_first_digit(cpf)
-        validation_second_digit = CpfGeneratorValidator.verify_second_digit(cpf)
+        validation_first_digit = CpfApp.verify_first_digit(cpf)
+        validation_second_digit = CpfApp.verify_second_digit(cpf)
 
-        if CpfGeneratorValidator.verify_sequence(cpf):
-            print(f'Invalid cpf.')
+        if CpfApp.verify_sequence(cpf):
             return False
 
         if validation_first_digit and validation_second_digit:
-            print(f'Valid cpf.')
             return True
         else:
-            print(f'Invalid cpf.')
             return False
 
     @staticmethod
@@ -106,7 +100,7 @@ class CpfGeneratorValidator():
         digit = cpf[-2]
         cpf = cpf[:-2]
 
-        correct_digit = CpfGeneratorValidator.generate_cpf_first_digit(cpf)[-1]
+        correct_digit = CpfApp.generate_cpf_first_digit(cpf)[-1]
 
         if str(correct_digit) == digit:
             return True
@@ -118,15 +112,16 @@ class CpfGeneratorValidator():
         digit = cpf[-1]
         cpf = cpf[:-1]
 
-        correct_digit = CpfGeneratorValidator.generate_cpf_second_digit(cpf)[-1]
+        correct_digit = CpfApp.generate_cpf_second_digit(cpf)[-1]
 
         if str(correct_digit) == digit:
             return True
         else:
             return False 
-    
+
     @staticmethod
     def get_formatted_cpf(cpf):
+
         position = 0
 
         cpf_mask = 'xxx.xxx.xxx-xx'
@@ -139,7 +134,5 @@ class CpfGeneratorValidator():
                 position += 1
             else:
                 result += num
-
-        print(result)
 
         return result
